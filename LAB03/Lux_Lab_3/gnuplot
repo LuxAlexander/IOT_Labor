@@ -1,0 +1,20 @@
+#!/usr/bin/env gnuplot
+
+
+fg = '#aaaaaa'
+bg = '#000000'
+set title "PM Scopeview (".ARG1.")" tc rgb (fg) noenhanced
+set key autotitle columnhead tc rgb (fg)
+set xlabel "Zeit in ms" textcolor rgb (fg)
+set ylabel "Spannung in V" textcolor rgb (fg)
+set style line 2 lw 1 lt 1 lc rgb '#E6AB02' # banana
+set border lc rgb (fg)
+set grid lc rgb (fg)
+set t wxt noraise background rgb (bg)
+end=0; bind "x" "end = 1"
+while(end==0) {
+plot ARG1 index 1 using 1:2 with lines ls 2,\
+'' index 0 using 1:2:3 with labels offset 0,0.2 tc rgb (fg) point ps 107 lc rgb '#666666' lw
+1 notitle
+pause 0.2
+}
